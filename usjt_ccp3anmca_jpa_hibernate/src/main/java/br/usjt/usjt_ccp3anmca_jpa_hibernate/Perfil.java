@@ -3,11 +3,15 @@ package br.usjt.usjt_ccp3anmca_jpa_hibernate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_perfil")
 public class Perfil {
+	
+	@OneToOne (mappedBy = "perfil")
+	private Usuario usuario;
 	
 	@Id
 	@GeneratedValue
@@ -54,6 +58,15 @@ public class Perfil {
 			return false;
 		return true;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 }
 
 // Comentário de teste

@@ -1,10 +1,13 @@
 package br.usjt.usjt_ccp3anmca_jpa_hibernate;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -16,6 +19,15 @@ public class Usuario {
 	@JoinColumn (name = "id_do_meu_perfil")
 	private Perfil perfil;
 
+	//@ManyToMany
+	//@JoinTable (name = "tb_usuario_conteudo",
+	//joinColumns = @JoinColumn (name = "id_usuario"), inverseJoinColumns = @JoinColumn
+	//(name = "id_consumo"))
+	//private List <Conteudo> conteudos;
+	
+	@OneToMany (mappedBy = "usuario")
+	private List <Consumo> consumos;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -25,6 +37,8 @@ public class Usuario {
 	private String fone;
 	@Column(nullable = true, length = 100)
 	private String email;
+
+	public Object idCidade;
 
 	public Long getId() {
 		return id;
